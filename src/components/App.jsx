@@ -5,11 +5,13 @@ import { AppBar } from "../../components/AppBar";
 import { TaskForm } from "../components/TaskForm";
 import { TaskList } from "../components/TaskList";
 
+// import function of the selectors
+import {selectorIsLoading, selectorError} from "../redux/tasksSlice"
 export default function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.tasks.isLoading);
-  const error = useSelector((state) => state.tasks.error);
-
+  const isLoading = useSelector(selectorIsLoading);
+  const error = useSelector(selectorError);
+    
   // call operation
   useEffect(() => {
     dispatch(fetchTasks());
@@ -22,9 +24,6 @@ export default function App() {
       <TaskForm />
         {isLoading && !error && <b>Request in progress...</b>}
       <TaskList />
-      
-      {error && <p>{error}</p>}
-     
     </>
     
   );

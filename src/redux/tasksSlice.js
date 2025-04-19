@@ -2,6 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 // import operation
 import { fetchTasks, addTask, deleteTask, toggleCompleted } from "./operations";
 
+
+
+export const selectTasks = (state) => state.tasks.items;
+
+export const selectIsLoading = (state) => state.tasks.isLoading;
+
+export const selectError = (state) => state.tasks.error;
+
 const handlePending = state => {
   state.isLoading = true;
 }
