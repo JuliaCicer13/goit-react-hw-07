@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react=redux';
-import { fetchTasks } from "../redux/operations";
-import { SearchBox } from "../../components/AppBar";
+import { fetchTasks } from "../redux/contactsOps";
+import { SearchBox } from "../../components/SearchBox";
 import { ContactForm } from "../components/ContactForm";
-import { ContactList } from "../components/TaskList";
+import { ContactList } from "../components/ContactList";
 
 // import function of the selectors
-import {selectorIsLoading, selectorError} from "../redux/tasksSlice"
+import {selectorIsLoading, selectorError} from "../redux/contactsSlice"
 export default function App() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectorIsLoading);

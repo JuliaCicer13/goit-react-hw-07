@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import operation
-import { fetchTasks, addTask, deleteTask, toggleCompleted } from "./operations";
+import { fetchContacts, addContact, deleteContact, toggleCompleted } from "./contactsOps";
 
-export const selectTaskCount = state => {
-  const tasks = selectTasks(state);
+export const selectContactCount = state => {
+  const contacts = selectContacts(state);
 
-  return tasks.reduce(
-    (count, task) => {
-      if (task.completed) {
+  return contacts.reduce(
+    (count, contacts) => {
+      if (contacts.completed) {
         count.completed += 1;
       } else {
         count.active += 1;
@@ -18,11 +18,11 @@ export const selectTaskCount = state => {
   );
 };
 
-export const selectTasks = (state) => state.tasks.items;
+export const selectContacts = (state) => state.contacts.items;
 
-export const selectIsLoading = (state) => state.tasks.isLoading;
+export const selectIsLoading = (state) => state.contacts.isLoading;
 
-export const selectError = (state) => state.tasks.error;
+export const selectError = (state) => state.contacts.error;
 
 const handlePending = state => {
   state.isLoading = true;
@@ -33,10 +33,15 @@ const handleRejected = (state, action) => {
 };
 
 
-const tasksSlice = createSlice({
-  name: "tasks",
+const slice = createSlice({
+  name: "contacts",
   initialState: {
-    items: [],
+    items: [
+      {id: 1, name: "Rosie Simpson", number: "459-12-56"},
+      {id: 2, name: "Hermione Kline", number: "443-89-1" },
+      {id: 3, name: "Eden Clements",number: "645 - 17 - 79"},
+      {id: 4, name: "Annie Copeland", number: "227-91-26" }
+    ], 
     isLoading: false,
     error: null,
   },
@@ -44,28 +49,28 @@ const tasksSlice = createSlice({
   
   extraReducers: builder => {
     builder
-      .addCase(fetchTasks.pending, handlePending)
-      .addCase(fetchTasks.fulfilled, (state, action) => {
+      .addCase(fetchContacts.pending, handlePending)
+      .addCase(fetchContacts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.items = action.payload;
       })
-      .addCase(fetchTasks.rejected, handleRejected)
-      .addCase(addTask.fulfilled, (state, action) => {
+      .addCase(fetchContacts.rejected, handleRejected)
+      .addCase(addContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.items.push(action.payload);
       })
-      .addCase(addTask.rejected, handleRejected)
-      .addCase(deleteTask.pending, handlePending)
-      .addCase(deleteTask.fulfilled, (state, action) => {
+      .addCase(addContact.rejected, handleRejected)
+      .addCase(deleteContact.pending, handlePending)
+      .addCase(deleteContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.items.filter(
           (task) => task.id !== action.payload.id
         )
       })
-      .addCase(deleteTask.rejected, handleRejected)
+      .addCase(deleteContact.rejected, handleRejected)
       .addCase(toggleCompleted.pending, handlePending)
       .addCase(toggleCompleted.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -79,4 +84,4 @@ const tasksSlice = createSlice({
   },
 });
 
-export default tasksSlice.reducer;
+export default slice.reducer;

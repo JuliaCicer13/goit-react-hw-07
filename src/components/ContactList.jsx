@@ -1,31 +1,31 @@
 import { useSelector } from 'react-redux';
-import { selectTasks } from "../redux/tasksSlice";
+import { selectContact } from "../redux/contactsSlice";
 import {selectStatusFilter} from "../redux/filterSlice"
-import { Task } from "./Task";
-import { selectVisibleTasks } from "../redux/tasksSlice";
+import { Contact } from "../components/Contact";
+import { selectVisibleTasks } from "../redux/contactsSlice";
 import css from "../components/styles/TaskList.module.css";
 
-const getVisibleTasks = (tasks, statusFilter) => {
-    switch (statusFiter) {
+const getVisibleContacts = (items, statusFilter) => {
+    switch (statusFilter) {
         case 'active':
-            return tasks.filter((task) => !task.completed);
+            return items.filter((item) => !item.completed);
         case 'completed':
-            return tasks.filter((task) => task.completed);
+            return items.filter((item) => item.completed);
         default:
-            return tasks;
+            return items;
     }
 }
 
-export const TaskList = () => {
-    const tasks = useSelector(selectVisibleTasks);
+export const ContactList = () => {
+    const items = useSelector(selectVisibleTasks);
     const statusFilter = useSelector(selectStatusFilter);
-    const visibleTasks = getVisibleTasks(tasks, statusFilter);
+    const visibleContacts = getVisibleContacts(items, statusFilter);
 
     return (
         <ul className={css.list}>
-            {visibleTasks.map((task) => (
-                <li className={css.listItem} key={task.id}>
-                    <Task task={task} />
+            {visibleContacts.map((item) => (
+                <li className={css.listItem} key={item.id}>
+                    <Contact task={item} />
                 </li>
             ))}
         </ul>

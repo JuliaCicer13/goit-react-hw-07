@@ -1,36 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { selectStatusFilter } from "../redux/filterSlice";
+import { selectNameFilter } from "../redux/filterSlice";
 
 
-export const selectTasks = state => state.tasks.items;
-export const selectIsLoading = state => state.tasks.isLoading;
-export const selectError = state => state.tasks.error;
+export const selectContacts = state => state.contacts.items;
+export const selectIsLoading = state => state.contacts.isLoading;
+export const selectError = state => state.contacts.error;
 
 
-export const selectStatusFilter = state => {
+export const selectNameFilter = state => {
   
-  const tasks = selectTasks(state);
-  const statusFilter = selectStatusFilter(state);
+  const contacts = selectContacts(state);
+  const statusFilter = selectNameFilter(state);
   
   switch (statusFilter) {
     case "active":
-      return tasks.filter(task => !task.completed);
+      return contacts.filter(contacts => !contacts.completed);
     case "completed":
-      return tasks.filter(task => tasks.completed);
+      return contacts.filter(contacts => contacts.completed);
     default:
-      return tasks;  
+      return contacts;  
   }
 }
-  state.filters.status;
 
 const filtersSlice = createSlice({
   name: 'filters',
   initialState: {
-    status: 'all',
+    name: "",
   },
   reducers: {
     setStatusFilter(state, action) {
-      state.status = action.payload;
+      state.name = action.payload;
     },
   },
 });

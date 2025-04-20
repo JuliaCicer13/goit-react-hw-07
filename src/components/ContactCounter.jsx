@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { selectTaskCount } from "../redux/tasksSlice";
+import { selectContactCount } from "../redux/tasksSlice";
 
 import css from "../components/styles/TaskCounter.module.css";
 
 export const TaskCounter = () => {
-    const count = useSelector(selectTaskCount);
+    const count = useSelector(selectContactCount);
 
 
     return (

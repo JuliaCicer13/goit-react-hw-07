@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { addTask } from "redux/operations";
+import { addContact } from "redux/operations";
 import { Button } from "./Button";
-import css from "../components/styles/TaskForm.module.css";
+import styles from "../components/styles/TaskForm.module.css";
 
 
 export const TaskForm = () => {
@@ -10,19 +10,15 @@ export const TaskForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
-        dispatch(addTask(event.target.elements.text.value));
+        dispatch(addContact(event.target.elements.text.value));
         form.reset();
     };
 
     return (
-        <form className={css.form} onSubmit={handleSubmit}>
-            <input
-                className={css.field}
-                type="text"
-                name="text"
-                placeholder="Enter the text..."
-            />
-            <Button type="submit">Add task</Button>
-        </form>
+     <form className={styles.form} onSubmit={handleSubmit}>
+       <input className={styles.field} type="text" name="name" placeholder="Enter task text..." />
+       <input className={styles.field} type="text" name="number" placeholder="Enter number..."/>
+      <Button className={styles.btn} type="submit">Add contact</Button>
+    </form>
     )
 }
