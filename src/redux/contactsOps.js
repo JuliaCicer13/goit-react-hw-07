@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 // get base url
 // for all questions of axios
 
-axios.defaults.baseURL = "https://62584f320c918296a49543e7.mockapi.io";
+axios.defaults.baseURL = "https://mockapi.io/projects/6806a3bce81df7060eb7c471";
 
 
 // call async operation
