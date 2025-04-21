@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // import operation
 import { fetchContacts, addContact, deleteContact, toggleCompleted } from "./contactsOps";
 
-export const selectContactCount = state => {
+export const selectFilteredContacts = state => {
   const contacts = selectContacts(state);
 
   return contacts.reduce(
