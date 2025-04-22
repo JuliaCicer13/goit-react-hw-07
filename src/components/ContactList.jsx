@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { selectContact } from "../redux/contactsSlice";
-import {selectStatusFilter} from "../redux/filterSlice"
+import { selectFilteredContacts} from "../redux/filterSlice"
 import { Contact } from "../components/Contact";
 import { selectVisibleTasks } from "../redux/contactsSlice";
-import css from "../components/styles/TaskList.module.css";
+import css from "../components/styles/ContactList.module.css";
 
 const getVisibleContacts = (items, statusFilter) => {
     switch (statusFilter) {
@@ -18,7 +18,7 @@ const getVisibleContacts = (items, statusFilter) => {
 
 export const ContactList = () => {
     const items = useSelector(selectVisibleTasks);
-    const statusFilter = useSelector(selectStatusFilter);
+    const statusFilter = useSelector( selectFilteredContacts);
     const visibleContacts = getVisibleContacts(items, statusFilter);
 
     return (

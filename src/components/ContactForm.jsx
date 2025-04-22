@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
-import { addContact } from "redux/operations";
+import { addContact } from "../redux/contactsOps";
 import { Button } from "./Button";
-import styles from "../components/styles/TaskForm.module.css";
+import styles from "../components/styles/ContactForm.module.css";
 
 
-export const TaskForm = () => {
+export const ContactForm = () => {
     const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
