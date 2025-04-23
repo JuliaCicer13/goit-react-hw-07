@@ -1,31 +1,17 @@
-import { useSelector } from 'react-redux';
-import { selectContact } from "../redux/contactsSlice";
-import { selectFilteredContacts} from "../redux/filterSlice"
+import { useSelector, useDispatch } from 'react-redux';
+import { selectFilteredContacts} from "../redux/selectors";
 import { Contact } from "../components/Contact";
-import { selectVisibleTasks } from "../redux/contactsSlice";
 import css from "../components/styles/ContactList.module.css";
 
-const getVisibleContacts = (items, statusFilter) => {
-    switch (statusFilter) {
-        case 'active':
-            return items.filter((item) => !item.completed);
-        case 'completed':
-            return items.filter((item) => item.completed);
-        default:
-            return items;
-    }
-}
 
 export const ContactList = () => {
-    const items = useSelector(selectVisibleTasks);
-    const statusFilter = useSelector( selectFilteredContacts);
-    const visibleContacts = getVisibleContacts(items, statusFilter);
-
+    const dispatch = useDispatch();
+    const contacts = useSelector(selectFilteredContacts);
     return (
         <ul className={css.list}>
-            {visibleContacts.map((item) => (
-                <li className={css.listItem} key={item.id}>
-                    <Contact task={item} />
+            {contacts.map(({name, number, id}) => (
+                <li className={css.listItem} key={contact.id}>
+                    <Contact contact={contact} />
                 </li>
             ))}
         </ul>

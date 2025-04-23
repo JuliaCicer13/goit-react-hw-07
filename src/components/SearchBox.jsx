@@ -1,18 +1,23 @@
-import { StatusFilter } from "./StatusFilter";
-import { ContactCounter } from "./ContactCounter";
+import { setNameFilter } from "../redux/filterSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {selectNameFilter} from '../redux/filterSlice';
+
 import css from "../components/styles/SearchBox.module.css";
 
 export const SearchBox = () => {
-<header className={css.header}>
-    <section className={css.section}>
-        <h2 className={css.title}>Tasks</h2>
-        <ContactCounter/>
-    </section>  
-    <section className={css.section}>
-      <h2 className={css.title}>Filter by status</h2>
-       <StatusFilter/>
-    </section>
-</header>
+ const dispatch = useDispatch();
+ const filter = useSelector(selectNameFilter);
 
-
-}
+ const handleChange = (e) => {
+    dispatch(setNameFilter(e.target.value));
+ };
+ 
+ return (
+    <input 
+    type="text"
+    value={filter}
+    onChange={handleChange}
+    placeholder="Searching by name"
+    />
+   );
+};

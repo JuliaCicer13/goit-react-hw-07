@@ -10,8 +10,12 @@ export const ContactForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
-        dispatch(addContact(event.target.elements.text.value));
-        form.reset();
+        const name = form.elements.name.value.trim();
+        const number = form.elements.number.value.trim();
+        if (name && number) {
+          dispatch(addContact({name, number}));
+          form.reset();
+        }
     };
 
     return (
