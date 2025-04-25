@@ -6,7 +6,7 @@ export const Contact = ({ contact }) => {
     const dispatch = useDispatch();
 
     const handleDelete = () => {
-        dispatch(deleteContact(contactId));
+        dispatch(deleteContact(contact.id));
     };
     return (
      <div className={css.wrapper}>
